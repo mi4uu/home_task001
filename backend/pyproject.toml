@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Michal Lipinski <michal.lipinski@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.78.0"
+strawberry-graphql = {extras = ["debug-server"], version = "^0.113.0"}
+databases = {extras = ["asyncpg"], version = "^0.5.5"}
+celery = "^5.2.6"
+typer = "^0.4.1"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+pyright = "^1.1.248"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 120
+exclude = "tests/*"
+ignore = "E226,E302,E41"

@@ -1,0 +1,19 @@
+{
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.testing.pytestArgs": ["--ignore=data"],
+    "python.testing.pytestEnabled": true,
+    "python.analysis.typeCheckingMode":"strict",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.completeFunctionParens":true,
+    "testExplorer.codeLens":true,
+    "testExplorer.gutterDecoration":true,
+    "python.testing.codeLensesEnabled":false,
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    "python.linting.enabled": true,
+    "python.defaultInterpreterPath": "./.venv/bin/python"
+ 
+}

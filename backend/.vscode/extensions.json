@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "visualstudioexptteam.vscodeintellicode",
+        "connorshea.vscode-test-explorer-status-bar"
+    ]
+}
