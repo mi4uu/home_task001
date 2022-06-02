@@ -1,14 +1,16 @@
 import uvicorn
 from fastapi import FastAPI
 
-from .config import APP_PORT, APP_HOST
-from .routes import router
+from backend.config import APP_PORT, APP_HOST
+from backend.routers.main_router import router as main_router
+from backend.routers.files_router import router as files_router
+
 
 app = FastAPI()
 
-
-app.include_router(router)
+app.include_router(main_router)
+app.include_router(files_router, prefix="/files")
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host=APP_HOST, port=APP_PORT)  # type: ignore
+    uvicorn.run("main:app", host=APP_HOST, port=int(APP_PORT), reload=True)
