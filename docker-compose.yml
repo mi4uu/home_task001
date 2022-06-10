@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  # Database service
+  database:
+    container_name: ml-challenge-database
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: "db,test"
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+        - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  scheduler:
+    image: ghcr.io/dask/dask:2022.5.2-py3.10
+    hostname: scheduler
+    ports:
+      - "8786:8786"
+      - "8787:8787"
+    command: ["dask-scheduler"]
+
+  worker:
+    image: ghcr.io/dask/dask:2022.5.2-py3.10
+    depends_on:
+      - database
+      - scheduler
+    volumes:
+      - ./backend:/backend:cached
+      - ./storage/:/storage/
+    environment:
+      - EXTRA_CONDA_PACKAGES="requests aiohttp pyarrow"
+    command: ["sh", "-c", "pip install -e /backend && dask-worker tcp://scheduler:8786"]
+    #command: ["dask-worker", "tcp://scheduler:8786"]
+
+  
+  notebook:
+    image: ghcr.io/dask/dask-notebook:2022.5.2-py3.10
+    ports:
+      - "8888:8888"
+    environment:
+      - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"
+
+
+  # Main backend application
+  backend:
+    container_name: ml-challenge-backend
+    build: ./backend
+    image: ml-challenge-backend
+    ports:
+      - "8080:8080"
+      - "5678:5678"
+    environment:
+      DATABASE_HOST: database
+      DATABASE_USER: postgres
+      DATABASE_NAME: mlchellenge
+    volumes:
+      - ./backend/backend:/code/backend:cached
+      - ./backend/tests:/code/tests:cached
+      - ./backend/migrations:/code/migrations
+      - ./storage:/storage
+    depends_on:
+      - database
+      - scheduler
+      - worker
+    restart: on-failure
+    command: ["sh", "-c", "poetry run python -m debugpy  --listen 0.0.0.0:5678 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8080"]
