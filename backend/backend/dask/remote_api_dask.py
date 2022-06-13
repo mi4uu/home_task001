@@ -60,7 +60,7 @@ def combine_parquets(
 
     # set index to DF, so we can join on it
     df1 = df1.set_index(join_by1)
-    result = df0.join(df1, on=[join_by0], how="left")
+    result = df0.merge(df1, on=[join_by0], how="left")
 
     result.to_parquet(outout_path)
 
@@ -80,7 +80,7 @@ async def combine_files(
     join_by0: str | None,
     join_by1: str | None,
     settings: AppSettings,
-) -> schemas.DataFromAPI:
+) -> schemas.CSVFileSchema:
     with get_dask_client() as client:
         task = client.submit(
             combine_parquets,

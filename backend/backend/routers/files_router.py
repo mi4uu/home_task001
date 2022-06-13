@@ -1,8 +1,9 @@
 from datetime import datetime
+import json
 import logging
 import os
 from typing import List, cast
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, File, HTTPException, Response, UploadFile
 from backend.db.database import get_db, AsyncSession
 from fastapi import Depends
 import pandas as pd
@@ -56,7 +57,12 @@ async def get_file(
             detail="Somethings went wrong 😫 We cannot process this file",
         )
 
-    return JSONResponse(content=df.to_json())  # type: ignore
+    json_response = json.loads( df.to_json(orient="table") )
+    response = {
+        **json_response,
+        **csv_file.dict()
+    }
+    return response
 
 
 @router.post("/", status_code=201, response_model=CSVFileSchema)

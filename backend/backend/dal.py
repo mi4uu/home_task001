@@ -48,10 +48,10 @@ async def create_api_file(
     db: AsyncSession, api_file: schemas.APIDataSchemaIn
 ) -> schemas.APIDataSchema:
 
-    db_user = models.APIDataModel(
+    api_data = models.APIDataModel(
         **api_file.dict(),
     )
-    db.add(db_user)
+    db.add(api_data)
 
     try:
         await db.commit()
@@ -59,8 +59,8 @@ async def create_api_file(
         await db.rollback()
         raise
 
-    await db.refresh(db_user)
-    return schemas.APIDataSchema(**db_user.__dict__)
+    await db.refresh(api_data)
+    return schemas.APIDataSchema(**api_data.__dict__)
 
 
 async def get_api_file(db: AsyncSession, url: str) -> schemas.APIDataSchema:

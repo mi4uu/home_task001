@@ -1,7 +1,6 @@
 from http import HTTPStatus
 import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
-from backend import dal
 from httpx import AsyncClient
 
 
