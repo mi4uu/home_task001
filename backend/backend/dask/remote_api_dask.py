@@ -1,5 +1,6 @@
+# type: ignore
 from backend.config import AppSettings
-import dask.dataframe as dd  # type: ignore
+import dask.dataframe as dd
 
 import os
 import hashlib
@@ -58,18 +59,16 @@ def combine_parquets(
     if join_by1 is None:
         join_by1 = df1.columns[0]
 
-    # set index to DF, so we can join on it
-    df1 = df1.set_index(join_by1)
-    result = df0.merge(df1, on=[join_by0], how="left")
+    result = df0.merge(df1, left_on=[join_by0], right_on=[join_by1], how="left")
 
     result.to_parquet(outout_path)
 
     csv_file = schemas.CSVFileSchemaIn(
-            file_name=randomname.get_name(),
-            file_src=output_file_name,
-            file_size=result.memory_usage(deep=True).sum().compute(),
-            columns=result.columns.tolist(),
-        )
+        file_name=randomname.get_name(),
+        file_src=output_file_name,
+        file_size=result.memory_usage(deep=True).sum().compute(),
+        columns=result.columns.tolist(),
+    )
 
     return csv_file
 

@@ -57,11 +57,8 @@ async def get_file(
             detail="Somethings went wrong 😫 We cannot process this file",
         )
 
-    json_response = json.loads( df.to_json(orient="table") )
-    response = {
-        **json_response,
-        **csv_file.dict()
-    }
+    json_response = json.loads(df.to_json(orient="table"))
+    response = {**json_response, **csv_file.dict()}
     return response
 
 

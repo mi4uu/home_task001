@@ -74,6 +74,7 @@ async def test_enrich_csv_with_new_data(client: AsyncClient, test_db: AsyncSessi
         'timestamp',
         'device',
         'userId',
+        'id',
         'title',
         'body',
     ]
