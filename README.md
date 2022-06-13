@@ -9,15 +9,18 @@ for a first run we need to run db migrations :
 
 # BACKEND
 
- thank you for bootstraping the app, but I like this part, so I did it from the scratch. 
+ thank you for bootstraping the app, but I like doing this part, so I did it from the scratch. 
+ I did try to use right tools for the job, so I put some thought into architecting app this way.
+
  I did choose fastAPI as it is simple and tightly coupled with pydantic and python typehints,
+
  and typed code is sooooo much better to work with.
  also it is build with asynchronous code in mind.
 
-from "celery" in app requirements that you provided I figured out that it would be good to show that I know how to use some task schedulers, but because we are working with data, I decided to use dask - which allows us to do everything that celery is doing + do data operations like in pandas, but in a distributed way.
+from "celery" in app requirements that you provided I figured out that it would be good to show that I know how to use some task schedulers. But because we are working with data, I decided to use DASK - which allows us to do everything that celery is doing + do data operations like in pandas, but in a distributed way.
 
 
- files are stored as parquet files.
+ files are stored as parquet files for practical reasons.
 
  all docker files and config is for developement only. 
 
@@ -122,4 +125,5 @@ also, if you open backend code inside vs code, it should ask you if You want to 
 
 
 # FEW LAST WORDS
-it didn't took 8 hours ;) I still not satisfied enought with the results but it has potential to scale and to add new features. 
+it didn't took 8 hours ;) it was more like 20, but bootstraping projects took a while. 
+I still not satisfied enought with the results but it has potential to scale and to add new features in the future. 
