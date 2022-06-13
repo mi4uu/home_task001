@@ -36,7 +36,7 @@ simple **react**(in strict mode) + **typescript** (app should be 100% type cover
 
 instead CRA i did use vite as it utilizes esbuild (https://esbuild.github.io/), and this equals build speed (and I love fast  HMR updates).
 
-unfortunetly, I did not have time to create any tests or implement **proper** error handing in the frontend app.
+unfortunetly, I did not have time to create any tests in the frontend app.
 
 app starts on ```localhost:3000```
 

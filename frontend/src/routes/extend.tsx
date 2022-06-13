@@ -19,8 +19,13 @@ const ExtendCallComponent = (props: {
       style={{ marginTop: 30 }}
       onClick={async () => {
         const result = await mutation.mutateAsync()
-        alert('File extended successfully! now You will be redirected to new file')
-        window.location.href = `/file/${result.id}`
+        if (result.id) {
+          alert('File extended successfully! now You will be redirected to new file')
+
+          window.location.href = `/file/${result.id}`
+        } else {
+          alert(`Something went wrong! ${mutation.error?.message}`)
+        }
       }}
     >
       join and save as new file
@@ -41,10 +46,12 @@ export const Extend = ({ csvFile, csvId }: { csvFile: iFileContent; csvId: numbe
 
   return (
     <div style={{ marginTop: 40 }}>
-      {!file && (
+      {!file ? (
         <label style={{ marginRight: 10 }}>
           API URL: <input name="url" onChange={(event) => setUrl(event.target.value)}></input>
         </label>
+      ) : (
+        <b>url: {url}</b>
       )}
       {!file && (
         <button
