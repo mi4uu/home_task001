@@ -29,13 +29,21 @@ properly typed fastapi (like this one), can produce openapi.json schema file, th
 
 
 # FRONTEND
-simple react+typescript frontend app, I did try to keep it simple and minimalistic (without some big UI packages like antd or materialUI) 
-instead CRA i did use vite as it utilizes esbuild (https://esbuild.github.io/), and equals build speed.
-unfortunetly, I did not have time to do any tests or implement proper error handing in the frontend app.
+simple **react**(in strict mode) + **typescript** (app should be 100% type covered) frontend app, I did try to keep it simple and minimalistic (without some big UI packages like antd or materialUI) 
+
+instead CRA i did use vite as it utilizes esbuild (https://esbuild.github.io/), and this equals build speed (and I love fast  HMR updates).
+
+unfortunetly, I did not have time to create any tests or implement **proper** error handing in the frontend app.
 
 app starts on ```localhost:3000```
 
 project uses pnpm instead of npm
+```curl -fsSL https://get.pnpm.io/install.sh | sh -``` or ```wget -qO- https://get.pnpm.io/install.sh | sh -```
+
+to run locally run
+
+```pnpm install```  
+```pnpm dev``` 
 
 ![app.gif](app.gif)
 
