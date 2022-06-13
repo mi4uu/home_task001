@@ -1,7 +1,7 @@
-# Adverity Full-stack challenge
+# Full-stack challenge
 
 Hi! It's nice to see you here and all the best luck solving the challenge!
-It based on simplified version of one of the day-to-day tasks we encounter at Adverity. 
+It based on simplified version of one of the day-to-day tasks we encounter
 
 To make the coding more pleasant for you, we've taken care of basic app bootstrap, please see `docker-compose.yaml` for details.
 Feel free to use different setup, add additional packages, libraries, images as you wish.
