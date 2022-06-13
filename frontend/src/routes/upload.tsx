@@ -25,6 +25,8 @@ const FileUpload = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log('Success:', result)
+        alert('File uploaded successfully! now you will be redirected to file details')
+        window.location.href = `/file/${result.id}`
       })
       .catch((error) => {
         console.error('Error:', error)

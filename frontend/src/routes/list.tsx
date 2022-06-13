@@ -6,11 +6,12 @@ import prettyBytes from 'pretty-bytes'
 import { Link } from 'react-router-dom'
 
 export default function List() {
-  const { data, isLoading, error } = useGetFiles()
+  const { data, isLoading, error, isError } = useGetFiles()
 
-  if (error) return <ErrorPage error={error} isLoading={isLoading} />
+  if (error || isError ) return <ErrorPage error={error} isLoading={isLoading} />
+  if (isLoading || !data) return <Loading />
+  if (!Array.isArray(data)) return <ErrorPage error={new Error('something wrong with data')} isLoading={isLoading} />
 
-  if (isLoading) return <Loading />
   return (
     <div className="rg-container">
       <table className="rg-table zebra" summary="Hed">
