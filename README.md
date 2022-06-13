@@ -7,21 +7,21 @@ how to run:
 for a first run we need to run db migrations : 
 ```docker compose run backend poetry run alembic upgrade head```
 
-#BACKEND
+# BACKEND
 
  thank you for bootstraping the app, but I like this part, so I did it from the scratch. 
  I did choose fastAPI as it is simple and tightly coupled with pydantic and python typehints,
  and typed code is sooooo much better to work with.
  also it is build with asynchronous code in mind.
 
- from celery in app that you provided I figured out that it would be good to show that I know how to use some task scheduler, but because we are working with data, I decided to use dask - wich allow us to do everything that celery is doing + do data operations like in pandas, but in distributed way.
+from "celery" in app requirements that you provided I figured out that it would be good to show that I know how to use some task schedulers, but because we are working with data, I decided to use dask - which allows us to do everything that celery is doing + do data operations like in pandas, but in a distributed way.
+
 
  files are stored as parquet files.
 
  all docker files and config is for developement only. 
 
- propertly typed fastapi (like this one), can produce openapi.json schema file, that can be integrated into frontend api calls, including generation of typescript interfaces. 
- unfortunetly there wans't time for that.
+properly typed fastapi (like this one), can produce openapi.json schema file, that can be integrated into frontend api calls, including the generation of typescript interfaces. unfortunately there wasn't time for that.
 
  # API
  to test api go to ```http://localhost:8080/docs```
@@ -29,9 +29,9 @@ for a first run we need to run db migrations :
 
 
 # FRONTEND
-simple react+typescript frontend app, I did tried to keep it simple and minimalistic (without some big UI packages like antd or materialUI) 
-instead CRA i did use vite as it utilize esbuild (https://esbuild.github.io/), and equals build speed.
-unfortunetly, I did not have time to do any tests or implement proper error handing in frontend app.
+simple react+typescript frontend app, I did try to keep it simple and minimalistic (without some big UI packages like antd or materialUI) 
+instead CRA i did use vite as it utilizes esbuild (https://esbuild.github.io/), and equals build speed.
+unfortunetly, I did not have time to do any tests or implement proper error handing in the frontend app.
 
 app starts on ```localhost:3000```
 
@@ -49,22 +49,22 @@ to run all tests run ```CI.sh```
 all code was done in vs code. 
 backend is configured to develop locally ( ```poetry install``` is all you need)
 
-also (if you never tried - I encourage You, this is fun experience) it can be developed using remote containers . 
+also (if you never tried - I encourage You, this is a fun experience) it can be developed using remote containers. 
 all you need is https://code.visualstudio.com/docs/remote/containers-tutorial#_install-the-extension
 
-also, if you open backend code inside vs code, it should ask you if You want to open it inside container. 
+also, if you open backend code inside vs code, it should ask you if You want to open it inside the container. 
 
 # DEBUGGING
 ### backend
- * you can connect with debugger to any part of the backend code that is runned by backend (configuration is already there) - it will work for local and dockerized deverlopement.
+ *  you can connect with the debugger to any part of the backend code that is run by backend (configuration is already there) - it will work for local and dockerized development.
 
- * if you want to connect to dask part, you need to run worker with debugpy module in same way, we are running backend.
+ * if you want to connect to dask part, you need to run worker with debugpy module in the same way, we are running the backend.
 
- * you can also debug tests, but some of them might required connection to dask so it is best, to debug them inside container.
+ * you can also debug tests, but some of them might require a connection to dask so it is best, to debug them inside the container.
 
  * vscode is configured to connect to db (dev and test)
-* we can use notebook to develop and test dask operations using jupiter ( http://127.0.0.1:8888/lab )
-* to see what is going on in dask, there is dashbord (http://localhost:8787/) where you can check workers / tasks / do some profiling
+* we can use a notebook to develop and test dask operations using Jupiter ( http://127.0.0.1:8888/lab )
+* to see what is going on in dask, there is dashboard (http://localhost:8787/) where you can check workers / tasks / do some profiling
 
 
 
