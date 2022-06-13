@@ -73,7 +73,7 @@ also, if you open backend code inside vs code, it should ask you if You want to 
 
 
 # FILE STRUCTURE:
-###backend
+### backend
 * .devcontainer - editor config to run editor inside container
 * .vscode - editor configuration
 * backend - app
@@ -88,7 +88,7 @@ also, if you open backend code inside vs code, it should ask you if You want to 
 * tests - pytest config and tests 
 
 
-###frontend
+### frontend
  * .vscode - editor configuration
  * components - some common shared components like "loading"
  * css - you guest it!
@@ -96,7 +96,7 @@ also, if you open backend code inside vs code, it should ask you if You want to 
  * store - the only global state we need is the one that comes from api. I'm using react-query for managing loading/caching api calls and pure fetch (normally I would just get axios, but I did try to keep it minimal)
  * App.tsx - main components, including main menu and routing. it is keept is one component just because it is small, normally routing should go outside.
 
-###storage
+### storage
  * shared volume for csv files
 ### docker-postgresql-multiple-databases
 * just for creating multiple db in postgress docker
