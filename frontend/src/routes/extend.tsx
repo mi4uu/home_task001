@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { iFile, iFileContent, useExtendFile, useGetRemoteApi } from '../store/store'
+import previewImg from '../static/preview.png'
 
 const onSelectColumn =
   (setColumn: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -89,13 +90,13 @@ export const Extend = ({ csvFile, csvId }: { csvFile: iFileContent; csvId: numbe
             }}
           >
             {' '}
-            <b>API column:</b>{' '}
+            <b>API <a href={url ?? ''} target="_blank" ><img style={{width:25, height:25, position:'relative', top:8}} src={previewImg} alt='preview' /></a> column:</b>{' '}
             <select onChange={onSelectColumn(setColumn1)} style={{ marginLeft: 40 }}>
               {file.columns.map((column) => (
                 <option>{column}</option>
               ))}
-            </select>
-          </label>
+            </select> 
+          </label> 
           {column0 && column1 && url && (
             <ExtendCallComponent url={url} csv_id={csvId} api_column={column1} csv_column={column0} />
           )}
