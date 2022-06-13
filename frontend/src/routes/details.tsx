@@ -13,7 +13,9 @@ const DetailsContent = ({ csvFile, csvId }: { csvFile: iFileContent; csvId: numb
         <caption className="rg-header">
           <span className="rg-hed">CSV file : {csvFile.file_name}</span>
           <span className="rg-dek">created : {moment(csvFile.created_at).format('YYYY-MM-DD HH:mm')}</span>
-          <Extend csvFile={csvFile} csvId={csvId} />
+		  <div className='componentWrapper'><div className="header">JOIN with external API</div>   <Extend csvFile={csvFile} csvId={csvId} /></div>
+
+       
         </caption>
         <thead>
           <tr>

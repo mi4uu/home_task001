@@ -25,7 +25,7 @@ const ExtendCallComponent = (props: {
 
           window.location.href = `/file/${result.id}`
         } else {
-          alert(`Something went wrong! ${mutation.error?.message}`)
+          alert(`Something went wrong! ${(result as unknown as any).detail}`)
         }
       }}
     >
@@ -90,7 +90,7 @@ export const Extend = ({ csvFile, csvId }: { csvFile: iFileContent; csvId: numbe
             }}
           >
             {' '}
-            <b>API <a href={url ?? ''} target="_blank" ><img style={{width:25, height:25, position:'relative', top:8}} src={previewImg} alt='preview' /></a> column:</b>{' '}
+            <b>API <a href={url ?? ''} target="_blank" title="preview"><img style={{width:25, height:25, position:'relative', top:8}} src={previewImg} alt='preview' /></a> column:</b>{' '}
             <select onChange={onSelectColumn(setColumn1)} style={{ marginLeft: 40 }}>
               {file.columns.map((column) => (
                 <option>{column}</option>
